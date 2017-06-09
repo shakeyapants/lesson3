@@ -7,8 +7,7 @@ with open('referat.txt', 'r', encoding='utf-8') as f:
     for line in f:
         line.strip()
         words_in_line = line.split()
-        for word in words_in_line:
-            count_words += 1
+        count_words += len(words_in_line)
     print('Количество слов в документе: {}'.format(count_words))
 
 
@@ -22,8 +21,7 @@ with open('referat.txt', 'r', encoding='utf-8') as f:
             count_after = True
             continue
         words_in_line = line.split()
-        for word in words_in_line:
-            if count_after is True:
-                count_words += 1
+        if count_after is True:
+            count_words += len(words_in_line)
 
     print('Количество слов в сочинении: {}'.format(count_words))
