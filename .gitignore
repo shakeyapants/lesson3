@@ -1,3 +1,4 @@
 env/*
 .idea/*
 stops_data.csv
+metro_stops.json
