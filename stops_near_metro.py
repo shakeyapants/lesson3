@@ -35,15 +35,17 @@ station = None
 
 # which metro has the most stops
 for key, value in metro_coordintes.items():
+    stops_near_every_exit = []
     for coordinates in value:
-        stops_near_one_metro = 0
         metro = (coordinates[0], coordinates[1])
         for stop in stops_coordinates:
             distance = vincenty(metro, stop).meters
             if distance <= 500:
-                stops_near_one_metro += 1
-        if stops_near_one_metro >= max_stops:
-            max_stops = stops_near_one_metro
-            station = key
+                stops_near_every_exit.append(stop)
+    stops_near_metro = list(set(stops_near_every_exit))
+
+    if len(stops_near_metro) > max_stops:
+        max_stops = len(stops_near_metro)
+        station = key
 
 print('Самое большое количество остановок у станции {} – {}'.format(station, max_stops))
